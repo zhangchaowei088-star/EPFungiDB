@@ -7,18 +7,13 @@
     <title>Gene Detail | EPFungiDB</title>
     <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260722e">
     <link rel="stylesheet" href="{% static 'database/css/genes.css' %}?v=20260722e">
-    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+    <link rel="icon" href="{% static 'database/img/epfungidb-favicon.png' %}" type="image/png">
   </head>
   <body class="genes-page">
     <nav class="navbar genes-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
       <div class="nav-inner">
         <a class="logo" href="/">
-          <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
-              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </span>
+          <span class="logo-mark" aria-hidden="true"><img src="{% static 'database/img/epfungidb-logo.png' %}" alt=""></span>
           <span>EPFungiDB</span>
         </a>
 
@@ -58,9 +53,7 @@
       <div class="footer-grid">
         <div>
           <a class="footer-logo" href="/">
-            <span class="logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg>
-            </span>
+            <span class="logo-mark" aria-hidden="true"><img src="{% static 'database/img/epfungidb-logo.png' %}" alt=""></span>
             EPFungiDB
           </a>
           <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>

@@ -6,18 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EPFungiDB | Entomopathogenic Fungi Database</title>
     <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}">
-    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+    <link rel="icon" href="{% static 'database/img/epfungidb-favicon.png' %}" type="image/png">
   </head>
   <body>
     <nav class="navbar" id="navbar" aria-label="Primary navigation">
       <div class="nav-inner">
         <a class="logo" href="/">
-          <span class="logo-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none">
-              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
-              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </span>
+          <span class="logo-mark" aria-hidden="true"><img src="{% static 'database/img/epfungidb-logo.png' %}" alt=""></span>
           <span>EPFungiDB</span>
         </a>
 
@@ -49,13 +44,7 @@
             <span></span>
             Entomopathogenic Fungi · Comprehensive Database
           </div>
-          <div class="hero-emblem" aria-hidden="true">
-            <svg viewBox="0 0 120 120" fill="none">
-              <path d="M60 14c-17 13-25 27-25 43 0 17 11 29 25 29s25-12 25-29c0-16-8-30-25-43Z" fill="currentColor"/>
-              <path d="M48 44c8 6 16 12 24 18M72 44c-8 6-16 12-24 18M49 70h22M52 82h16M60 86v20" stroke="#0b2418" stroke-width="6" stroke-linecap="round"/>
-              <path d="M35 48c-12-12-22-15-30-12M85 48c12-12 22-15 30-12" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <div class="hero-emblem" aria-hidden="true"><img src="{% static 'database/img/epfungidb-logo.png' %}" alt=""></div>
           <h1>EPFungi<span>DB</span></h1>
           <p class="tagline">
             A unified genomic and pathogenicity-associated candidate feature resource for entomopathogenic fungi.
@@ -180,9 +169,7 @@
       <div class="footer-grid">
         <div>
           <a class="footer-logo" href="/">
-            <span class="logo-mark" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg>
-            </span>
+            <span class="logo-mark" aria-hidden="true"><img src="{% static 'database/img/epfungidb-logo.png' %}" alt=""></span>
             EPFungiDB
           </a>
           <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
