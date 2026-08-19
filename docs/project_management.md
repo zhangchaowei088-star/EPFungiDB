@@ -38,6 +38,14 @@ git commit -m "简短说明本次修改"
 git log --oneline --graph --decorate --all
 ```
 
+推送到 GitHub：
+
+```bash
+env -u LD_LIBRARY_PATH GIT_SSH_COMMAND="/usr/bin/ssh -i /data/home/zhangchaowei/.github-keys/epfungidb_ed25519 -o UserKnownHostsFile=/data/home/zhangchaowei/.github-keys/known_hosts" git push
+```
+
+说明：服务器的 conda 环境会影响系统 SSH 的 OpenSSL 库，因此推送时需要临时清空 `LD_LIBRARY_PATH`，并指定当前项目使用的 GitHub key。
+
 重要阶段可打 tag：
 
 ```bash
