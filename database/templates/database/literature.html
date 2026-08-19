@@ -1,0 +1,154 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Literature Evidence | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260722e">
+    <link rel="stylesheet" href="{% static 'database/css/genes.css' %}?v=20260818d">
+    <link rel="stylesheet" href="{% static 'database/css/evidence.css' %}?v=20260818a">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="genes-page evidence-page">
+    <nav class="navbar genes-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="/species/">Species</a>
+          <a href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a class="active" href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="gene-shell">
+        <section class="gene-panel evidence-panel">
+          <div class="gene-panel-head">
+            <div>
+              <p class="gene-kicker">Literature Evidence</p>
+              <h1>Curated strain-linked publication evidence</h1>
+              <p id="literature-summary">Loading curated literature evidence...</p>
+            </div>
+            <a href="/api/basic-metadata/?table_name=strain_literature_evidence">Open Evidence API</a>
+          </div>
+
+          <section class="evidence-overview" aria-label="Literature overview">
+            <div class="evidence-stat-grid" id="literature-stat-grid">
+              <article class="evidence-stat skeleton-card"></article>
+              <article class="evidence-stat skeleton-card"></article>
+              <article class="evidence-stat skeleton-card"></article>
+            </div>
+            <div class="evidence-note">
+              <strong>Curation model</strong>
+              <p>Retrieval records document strain-name searches across the release. Curated evidence records are the subset manually reviewed and linked to strain-level biological claims.</p>
+            </div>
+          </section>
+
+          <form class="evidence-search-form" id="literature-search-form">
+            <label for="literature-query">
+              <span>Search</span>
+              <input id="literature-query" type="search" placeholder="Sample, strain, title, DOI, evidence summary..." autocomplete="off">
+            </label>
+            <label for="literature-scope-filter">
+              <span>Evidence scope</span>
+              <select id="literature-scope-filter">
+                <option value="">All scopes</option>
+              </select>
+            </label>
+            <label for="literature-status-filter">
+              <span>Strain status</span>
+              <select id="literature-status-filter">
+                <option value="">All statuses</option>
+              </select>
+            </label>
+            <label for="literature-assay-filter">
+              <span>Assay extraction</span>
+              <select id="literature-assay-filter">
+                <option value="">All extraction states</option>
+              </select>
+            </label>
+            <div class="gene-actions">
+              <button class="ghost-button" type="button" id="clear-literature-search">Clear Filters</button>
+            </div>
+          </form>
+
+          <div class="gene-results-head evidence-results-head">
+            <p><span id="literature-count">0</span> curated literature records</p>
+          </div>
+
+          <div class="gene-table-wrap">
+            <table class="gene-table evidence-table literature-table">
+              <thead>
+                <tr>
+                  <th>Genome / Strain</th>
+                  <th>Publication</th>
+                  <th>Evidence Scope</th>
+                  <th>Strain Use</th>
+                  <th>Author-reported Summary</th>
+                  <th>Assay Link</th>
+                </tr>
+              </thead>
+              <tbody id="literature-table-body">
+                <tr class="gene-empty"><td colspan="6">Loading literature evidence...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg></span>EPFungiDB</a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Evidence</h4>
+          <a href="/bioassays/">Bioassay Evidence</a>
+          <a href="/literature/">Literature Evidence</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>Evidence scope is strain-specific and should not be generalized without review.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'database/js/literature.js' %}?v=20260818a" defer></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+.env
+db.sqlite3
+staticfiles/
+
+# Python / Django runtime
+.pytest_cache/
+*.log
+logs/
+media/
+
+# Local OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Generated or bulky database-ready data.
+# Keep these in dated backup snapshots, not in Git.
+tables/*.tsv
+checks/*.tsv
+manifests/*.json
+manifests/*.tsv
+
+# Local design references and screenshots kept outside source history.
+/Design homepage for database/
+/*.png
+/*.jpg
+/*.jpeg

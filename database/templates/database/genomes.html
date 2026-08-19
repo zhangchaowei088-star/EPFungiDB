@@ -1,0 +1,209 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genomes | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260722a">
+    <link rel="stylesheet" href="{% static 'database/css/genomes.css' %}?v=20260818a">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="genome-page">
+    <nav class="navbar genome-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="/species/">Species</a>
+          <a class="active" href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="genome-hero">
+        <div class="genome-hero-inner">
+          <div class="genome-copy">
+            <p class="genome-kicker">Genome Browser</p>
+            <h1>Compare curated fungal genomes at strain level.</h1>
+            <p>
+              Browse assembly statistics, BUSCO completeness, annotation counts, and analysis readiness for every genome in the local EPFungiDB release.
+            </p>
+          </div>
+
+          <div class="genome-visual" aria-label="Genome size and BUSCO completeness chart">
+            <div class="chart-head">
+              <span>Genome size x BUSCO completeness</span>
+              <strong id="chart-count">...</strong>
+            </div>
+            <canvas id="genome-scatter" width="760" height="330"></canvas>
+            <div class="chart-legend" id="chart-legend"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="genome-stats" aria-labelledby="genome-stats-title">
+        <div class="genome-section-head">
+          <h2 id="genome-stats-title">Genome Overview</h2>
+          <p>Summary metrics are calculated directly from the same sample records used by the table below.</p>
+        </div>
+
+        <div class="lineage-bar" id="lineage-bar" aria-label="Genome distribution by lineage"></div>
+
+        <div class="genome-metrics" id="genome-metrics">
+          <div class="genome-metric skeleton"></div>
+          <div class="genome-metric skeleton"></div>
+          <div class="genome-metric skeleton"></div>
+          <div class="genome-metric skeleton"></div>
+        </div>
+      </section>
+
+      <section class="genome-ledger" aria-labelledby="genome-ledger-title">
+        <div class="ledger-head">
+          <div>
+            <h2 id="genome-ledger-title">Genome Ledger</h2>
+            <p><span id="visible-count">...</span> genomes shown from <span id="total-count">...</span> records</p>
+          </div>
+          <a class="ledger-api-link" href="/api/samples/">Open API</a>
+        </div>
+
+        <div class="ledger-tools" role="search">
+          <label class="search-field" for="genome-search">
+            <span>Search genomes</span>
+            <input id="genome-search" type="search" placeholder="Species, strain, sample ID, family..." autocomplete="off">
+          </label>
+
+          <label for="lineage-filter">
+            <span>Lineage</span>
+            <select id="lineage-filter">
+              <option value="">All lineages</option>
+            </select>
+          </label>
+
+          <label for="family-filter">
+            <span>Family</span>
+            <select id="family-filter">
+              <option value="">All families</option>
+            </select>
+          </label>
+
+          <label for="genus-filter">
+            <span>Genus</span>
+            <select id="genus-filter">
+              <option value="">All genera</option>
+            </select>
+          </label>
+
+          <label for="ready-filter">
+            <span>Status</span>
+            <select id="ready-filter">
+              <option value="">All records</option>
+              <option value="ready">Full analysis</option>
+              <option value="basic">Basic DB ready</option>
+              <option value="busco">Has BUSCO</option>
+            </select>
+          </label>
+
+          <label for="sort-select">
+            <span>Sort</span>
+            <select id="sort-select">
+              <option value="species:asc">Species A-Z</option>
+              <option value="busco_complete_pct:desc">BUSCO high-low</option>
+              <option value="genome_size:desc">Genome size high-low</option>
+              <option value="n50:desc">N50 high-low</option>
+              <option value="gene_count:desc">Genes high-low</option>
+              <option value="bgc_count:desc">BGC high-low</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table class="genome-table">
+            <thead>
+              <tr>
+                <th>Species</th>
+                <th>Sample ID</th>
+                <th>Lineage</th>
+                <th>Genome size</th>
+                <th>GC</th>
+                <th>N50</th>
+                <th>Genes</th>
+                <th>Proteins</th>
+                <th>BUSCO</th>
+                <th>BGC</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="genome-table-body">
+              <tr class="table-loading"><td colspan="11">Loading genome records...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="ledger-footer">
+          <button type="button" id="prev-page">Previous</button>
+          <span id="page-status">Page 1</span>
+          <button type="button" id="next-page">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg>
+            </span>
+            EPFungiDB
+          </a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/literature/">Literature Evidence</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/api/samples/">Batch Data</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>Genome statistics are calculated from imported local TSV records.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'database/js/genomes.js' %}?v=20260722a" defer></script>
+  </body>
+</html>

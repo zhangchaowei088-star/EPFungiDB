@@ -1,0 +1,898 @@
+.genes-page {
+  background: #f4f9f5;
+}
+
+.genes-navbar .nav-links a.active {
+  color: var(--primary-dark);
+  background: rgba(22, 163, 74, 0.1);
+  opacity: 1;
+}
+
+.gene-shell,
+.gene-detail-main {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.gene-shell {
+  padding: 106px 0 90px;
+}
+
+.gene-tabs {
+  width: min(520px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(22, 163, 74, 0.12);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(13, 35, 24, 0.06);
+}
+
+.gene-tabs a {
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid rgba(22, 163, 74, 0.1);
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.gene-tabs a:last-child {
+  border-right: 0;
+}
+
+.gene-tabs a.active {
+  color: var(--ink);
+  box-shadow: inset 0 -3px var(--primary);
+}
+
+.gene-panel {
+  overflow: hidden;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.gene-panel-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px 32px;
+  color: #fff;
+  background: linear-gradient(135deg, #0d6b43, #19b978);
+}
+
+.gene-panel-head h1,
+.gene-detail-hero h1 {
+  margin: 0;
+  font-family: Outfit, sans-serif;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.02;
+}
+
+.gene-panel-head p:not(.gene-kicker),
+.gene-detail-hero p:not(.gene-kicker) {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.gene-panel-head a {
+  flex: 0 0 auto;
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.gene-kicker {
+  width: fit-content;
+  margin: 0 0 12px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #d8ffe3;
+  background: rgba(255, 255, 255, 0.12);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.gene-search-form {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 16px;
+  padding: 28px 32px 20px;
+  background: #fff;
+}
+
+.pathogenic-overview {
+  display: grid;
+  gap: 22px;
+  padding: 30px 32px 4px;
+  background:
+    linear-gradient(180deg, rgba(244, 249, 245, 0.94), #fff 72%),
+    #f4f9f5;
+}
+
+.pathogenic-statement {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 24px;
+  align-items: end;
+}
+
+.pathogenic-statement h2,
+.pathogenic-section-head h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: Outfit, sans-serif;
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 1.08;
+}
+
+.pathogenic-statement p,
+.pathogenic-section-head p {
+  max-width: 760px;
+  margin: 10px 0 0;
+  color: #4a6f58;
+  line-height: 1.65;
+}
+
+.pathogenic-release {
+  padding: 18px;
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.pathogenic-release span {
+  display: block;
+  color: var(--primary-dark);
+  font-family: Outfit, sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.pathogenic-release small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.pathogenic-module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pathogenic-module-card {
+  min-height: 216px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(13, 35, 24, 0.05);
+}
+
+.module-card-top,
+.module-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.module-card-top span,
+.feature-source-chip {
+  width: fit-content;
+  padding: 5px 8px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(22, 163, 74, 0.1);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.module-card-top small {
+  color: #6b8e75;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.pathogenic-module-card strong {
+  color: var(--ink);
+  font-family: Outfit, sans-serif;
+  font-size: 20px;
+}
+
+.module-card-count {
+  color: #17663f;
+  font-family: Outfit, sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.pathogenic-module-card p {
+  margin: 0;
+  color: #476b55;
+  line-height: 1.55;
+}
+
+.module-card-foot {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(22, 163, 74, 0.11);
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.pathogenic-evidence-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
+  gap: 16px;
+}
+
+.pathogenic-bigscape,
+.pathogenic-gcf-panel {
+  padding: 22px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.pathogenic-section-head {
+  margin-bottom: 16px;
+}
+
+.pathogenic-section-head h2 {
+  font-size: clamp(22px, 2vw, 30px);
+}
+
+.bigscape-class-list,
+.gcf-list {
+  display: grid;
+  gap: 10px;
+}
+
+.bigscape-class-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-top: 1px solid rgba(22, 163, 74, 0.1);
+}
+
+.bigscape-class-row strong,
+.gcf-row strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.bigscape-class-row span,
+.gcf-row span {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.bigscape-class-number {
+  color: #17663f;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.bigscape-class-line {
+  grid-column: 1 / -1;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.08);
+}
+
+.bigscape-class-line span {
+  display: block;
+  height: 100%;
+  margin: 0;
+  border-radius: inherit;
+  background: #2f8b57;
+}
+
+.gcf-row {
+  display: grid;
+  gap: 12px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(22, 163, 74, 0.1);
+}
+
+.gcf-row dl {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.gcf-row dt {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.gcf-row dd {
+  margin: 3px 0 0;
+  color: var(--primary-dark);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.pathogenic-list-empty {
+  padding: 18px;
+  color: var(--muted);
+  border: 1px dashed rgba(22, 163, 74, 0.2);
+  border-radius: 12px;
+  background: #f8fbf8;
+}
+
+.skeleton-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+}
+
+.skeleton-card::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(22, 163, 74, 0.08), transparent);
+  animation: skeleton-sweep 1.2s linear infinite;
+  content: "";
+}
+
+.kegg-search-form {
+  display: grid;
+  gap: 18px;
+  padding: 28px 32px 20px;
+  background: #fff;
+}
+
+.kegg-picker {
+  display: grid;
+  gap: 10px;
+}
+
+.kegg-picker-head label,
+.kegg-extra-filters label {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.kegg-picker-head span,
+.kegg-extra-filters span {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.kegg-picker-head input,
+.kegg-extra-filters input {
+  width: 100%;
+  height: 44px;
+  min-height: 0;
+  padding: 0 13px;
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  border-radius: 10px;
+  color: var(--ink);
+  background: #f8fbf8;
+  line-height: normal;
+  outline: none;
+}
+
+.kegg-picker-head input:focus,
+.kegg-extra-filters input:focus {
+  border-color: rgba(22, 163, 74, 0.48);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.08);
+}
+
+.kegg-radio-list {
+  max-height: 210px;
+  overflow: auto;
+  padding: 8px;
+  border: 1px solid rgba(22, 163, 74, 0.12);
+  border-radius: 12px;
+  background: #f8fbf8;
+}
+
+.kegg-radio-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 6px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.kegg-radio-row:hover,
+.kegg-radio-row:focus-within {
+  background: rgba(22, 163, 74, 0.07);
+}
+
+.kegg-radio-row input {
+  margin-top: 3px;
+}
+
+.kegg-radio-row strong {
+  display: block;
+  color: #173d29;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.kegg-radio-row small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kegg-radio-row a,
+.kegg-link {
+  color: #2f66b3;
+  font-weight: 800;
+}
+
+.kegg-link.ko {
+  color: var(--primary-dark);
+}
+
+.kegg-extra-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.kegg-list-empty {
+  padding: 18px;
+  color: var(--muted);
+}
+
+.gene-search-form label {
+  display: grid;
+  gap: 7px;
+  grid-template-rows: auto 44px minmax(16px, auto);
+  align-content: start;
+}
+
+.gene-search-form label:not(:has(small))::after {
+  display: block;
+  min-height: 16px;
+  content: "";
+}
+
+.gene-search-form label span {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.gene-search-form label small {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.gene-search-form input,
+.gene-search-form select {
+  width: 100%;
+  height: 44px;
+  min-height: 0;
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  border-radius: 10px;
+  color: var(--ink);
+  line-height: normal;
+  outline: none;
+}
+
+.gene-search-form input {
+  padding: 0 13px;
+  background: #f8fbf8;
+}
+
+.gene-search-form select {
+  padding: 0 38px 0 13px;
+  appearance: none;
+  background-color: #f8fbf8;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #4a7a5a 50%),
+    linear-gradient(135deg, #4a7a5a 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 19px,
+    calc(100% - 12px) 19px;
+  background-repeat: no-repeat;
+  background-size: 6px 6px, 6px 6px;
+}
+
+.gene-search-form input:focus,
+.gene-search-form select:focus {
+  border-color: rgba(22, 163, 74, 0.48);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.08);
+}
+
+.gene-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.ghost-button,
+.search-button,
+.gene-pager button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.ghost-button,
+.gene-pager button {
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  color: var(--primary-dark);
+  background: #fff;
+}
+
+.search-button {
+  border: 1px solid var(--primary);
+  color: #fff;
+  background: var(--primary);
+}
+
+.search-button:disabled,
+.gene-pager button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.gene-hint {
+  margin: 0 32px 20px;
+  padding: 22px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+  color: var(--muted);
+  background: #f4f9f5;
+}
+
+.gene-hint strong {
+  display: block;
+  color: var(--ink);
+  font-family: Outfit, sans-serif;
+  font-size: 22px;
+}
+
+.gene-hint p {
+  margin: 8px 0 0;
+}
+
+.gene-hint.loading {
+  border-color: rgba(22, 163, 74, 0.26);
+  background: #edf8f1;
+}
+
+.gene-hint.loading::after {
+  display: block;
+  height: 8px;
+  margin-top: 18px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2f7a48, #42b86a, #2f7a48);
+  background-size: 200% 100%;
+  animation: gene-progress 1.1s linear infinite;
+  content: "";
+}
+
+.gene-results-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 32px 16px;
+}
+
+.gene-results-head p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.gene-pager {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gene-pager span {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.gene-table-wrap {
+  margin: 0 32px 32px;
+  overflow: auto;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+}
+
+.gene-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.gene-table th,
+.gene-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(22, 163, 74, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.gene-table th {
+  color: #fff;
+  background: #2f4058;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.gene-table td {
+  color: #183829;
+  font-size: 14px;
+}
+
+.gene-table tbody tr:hover {
+  background: rgba(22, 163, 74, 0.035);
+}
+
+.gene-id-link {
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.gene-id-link:hover,
+.gene-id-link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.organism-name {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.muted-gene-cell {
+  color: rgba(74, 122, 90, 0.72);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.gene-empty td,
+.gene-error td {
+  padding: 42px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.gene-error td {
+  color: #8a3c3c;
+}
+
+.gene-detail-main {
+  padding: 106px 0 90px;
+}
+
+.gene-detail-hero {
+  padding: 34px;
+  border-radius: 18px;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(13, 107, 67, 0.96), rgba(25, 185, 120, 0.9)),
+    url("../img/epfungidb-hero.png") center / cover no-repeat;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 800;
+}
+
+.gene-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.detail-card {
+  min-height: 210px;
+  padding: 24px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.detail-card.wide {
+  grid-column: span 2;
+}
+
+.detail-card.full {
+  grid-column: 1 / -1;
+}
+
+.detail-card h2 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-family: Outfit, sans-serif;
+  font-size: 24px;
+}
+
+.detail-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.detail-list div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.detail-list dt {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.detail-list dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.feature-pills span {
+  padding: 6px 9px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(22, 163, 74, 0.09);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(22, 163, 74, 0.08), transparent);
+  animation: skeleton-sweep 1.2s linear infinite;
+  content: "";
+}
+
+@keyframes skeleton-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes gene-progress {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+@media (max-width: 1100px) {
+  .gene-search-form,
+  .kegg-extra-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pathogenic-module-grid,
+  .pathogenic-evidence-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gene-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-card.wide,
+  .detail-card.full {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .gene-shell,
+  .gene-detail-main {
+    width: min(100% - 32px, 1280px);
+    padding-top: 92px;
+  }
+
+  .gene-tabs,
+  .gene-search-form,
+  .kegg-extra-filters,
+  .pathogenic-statement,
+  .pathogenic-module-grid,
+  .pathogenic-evidence-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gene-panel-head,
+  .gene-results-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gene-panel-head,
+  .gene-search-form,
+  .kegg-search-form,
+  .pathogenic-overview {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .gene-hint,
+  .gene-table-wrap {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .gene-actions,
+  .gene-pager {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .detail-list div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+}

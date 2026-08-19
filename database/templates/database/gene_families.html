@@ -1,0 +1,208 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pathogenic Function Annotation | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260723a">
+    <link rel="stylesheet" href="{% static 'database/css/genes.css' %}?v=20260818d">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="genes-page">
+    <nav class="navbar genes-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="/species/">Species</a>
+          <a href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="gene-shell">
+        <div class="gene-tabs" aria-label="Gene data modules">
+          <a href="/genes/">Gene</a>
+          <a class="active" href="/gene-families/">Pathogenicity</a>
+          <a href="/kegg/">KEGG</a>
+        </div>
+
+        <section class="gene-panel pathogenic-panel">
+          <div class="gene-panel-head">
+            <div>
+              <p class="gene-kicker">Pathogenic Function Annotation</p>
+              <h1>Explore pathogenic function evidence</h1>
+              <p id="family-summary">Loading integrated pathogenicity-associated annotation summary...</p>
+            </div>
+            <a href="/api/pathogenicity-features/">Open Feature API</a>
+          </div>
+
+          <section class="pathogenic-overview" aria-label="Pathogenic function evidence overview">
+            <div class="pathogenic-statement">
+              <div>
+                <h2>Candidate pathogenic mechanisms, assembled from independent annotation tracks.</h2>
+                <p>This module brings secretome prediction, effector calls, carbohydrate-active enzymes, proteases, and secondary metabolite gene clusters into one searchable evidence layer.</p>
+              </div>
+              <div class="pathogenic-release">
+                <span id="complete-sample-count">...</span>
+                <small>genomes with complete pathogenic evidence annotation</small>
+              </div>
+            </div>
+
+            <div class="pathogenic-module-grid" id="pathogenic-module-grid">
+              <article class="pathogenic-module-card skeleton-card"></article>
+              <article class="pathogenic-module-card skeleton-card"></article>
+              <article class="pathogenic-module-card skeleton-card"></article>
+            </div>
+
+          </section>
+
+          <div class="gene-hint family-scope-note">
+            <strong>Evidence model</strong>
+            <p>SignalP6, EffectorP, run_dbCAN, and MEROPS are searchable at gene/protein level. antiSMASH and BiG-SCAPE currently provide genome, region, and GCF-level context. These are computational candidates, not experimentally validated virulence genes.</p>
+          </div>
+
+          <form class="gene-search-form" id="family-search-form">
+            <label class="organism-field" for="family-organism-select">
+              <span>Organism</span>
+              <select id="family-organism-select" name="sample_id">
+                <option value="">All organisms</option>
+              </select>
+              <small>Narrow feature searches to one genome when possible.</small>
+            </label>
+
+            <label for="feature-type-select">
+              <span>Evidence Class</span>
+              <select id="feature-type-select" name="feature_type">
+                <option value="">All evidence classes</option>
+                <option value="secreted_signal_peptide">Secretome signal peptide</option>
+                <option value="effector_candidate">Effector candidate</option>
+                <option value="carbohydrate_active_enzyme">CAZyme repertoire</option>
+                <option value="protease">Protease repertoire</option>
+              </select>
+            </label>
+
+            <label for="source-key-select">
+              <span>Analysis Source</span>
+              <select id="source-key-select" name="source_key">
+                <option value="">All sources</option>
+                <option value="signalp6">SignalP6</option>
+                <option value="effectorp">EffectorP</option>
+                <option value="dbcan_cazyme">run_dbCAN / CAZyme</option>
+                <option value="merops">MEROPS</option>
+              </select>
+            </label>
+
+            <label for="feature-id-input">
+              <span>Feature or Family ID</span>
+              <input id="feature-id-input" name="feature_id" type="search" placeholder="e.g., GH2, GT25, M14, Cytoplasmic effector" autocomplete="off">
+            </label>
+
+            <label for="family-gene-input">
+              <span>Gene ID</span>
+              <input id="family-gene-input" name="gene_id" type="search" placeholder="e.g., FUN_000005" autocomplete="off">
+            </label>
+
+            <label for="family-description-input">
+              <span>Description</span>
+              <input id="family-description-input" name="description" type="search" placeholder="Protein product or prediction keyword" autocomplete="off">
+            </label>
+
+            <div class="gene-actions">
+              <button class="ghost-button" type="button" id="clear-family-search">Clear Filters</button>
+              <button class="search-button" type="submit">Execute Search</button>
+            </div>
+          </form>
+
+          <div class="gene-hint" id="family-hint">
+            <strong>Start pathogenic evidence search</strong>
+            <p>Search by evidence class, source, feature ID, gene ID, or product description. Results are returned as a gene/protein table.</p>
+          </div>
+
+          <div class="gene-results-head" id="family-results-head" hidden>
+            <p><span id="family-result-count">0</span> matching feature records</p>
+            <div class="gene-pager">
+              <button type="button" id="family-prev">Previous</button>
+              <span id="family-page-status">Page 1</span>
+              <button type="button" id="family-next">Next</button>
+            </div>
+          </div>
+
+          <div class="gene-table-wrap">
+            <table class="gene-table">
+              <thead>
+                <tr>
+                  <th>Organism</th>
+                  <th>Evidence Class</th>
+                  <th>Feature / Family</th>
+                  <th>Gene ID</th>
+                  <th>Protein ID</th>
+                  <th>Product</th>
+                  <th>Prediction</th>
+                  <th>Evidence</th>
+                </tr>
+              </thead>
+              <tbody id="family-table-body">
+                <tr class="gene-empty"><td colspan="8">No query submitted yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg></span>EPFungiDB</a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/api/samples/">Batch Data</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>Feature annotations indicate candidate pathogenicity-associated evidence, not validated pathogenic genes.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'database/js/gene_families.js' %}?v=20260818c" defer></script>
+  </body>
+</html>

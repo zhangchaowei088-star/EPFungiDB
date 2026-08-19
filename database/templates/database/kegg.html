@@ -1,0 +1,179 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KEGG | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260722e">
+    <link rel="stylesheet" href="{% static 'database/css/genes.css' %}?v=20260818d">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="genes-page">
+    <nav class="navbar genes-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="/species/">Species</a>
+          <a href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="gene-shell">
+        <div class="gene-tabs" aria-label="Gene data modules">
+          <a href="/genes/">Gene</a>
+          <a href="/gene-families/">Pathogenicity</a>
+          <a class="active" href="/kegg/">KEGG</a>
+        </div>
+
+        <section class="gene-panel">
+          <div class="gene-panel-head">
+            <div>
+              <p class="gene-kicker">KEGG Search</p>
+              <h1>Search KEGG-annotated genes</h1>
+              <p id="kegg-summary">Loading KEGG annotation summary...</p>
+            </div>
+            <a href="/api/kegg-pathway-members/">Open KEGG API</a>
+          </div>
+
+          <form class="kegg-search-form" id="kegg-search-form">
+            <section class="kegg-picker">
+              <div class="kegg-picker-head">
+                <label for="organism-filter">
+                  <span>Select Organism</span>
+                  <input id="organism-filter" type="search" placeholder="Search organisms..." autocomplete="off">
+                </label>
+                <input id="kegg-organism-value" name="sample_id" type="hidden" value="">
+              </div>
+              <div class="kegg-radio-list" id="kegg-organism-list">
+                <div class="kegg-list-empty">Loading organisms...</div>
+              </div>
+            </section>
+
+            <section class="kegg-picker">
+              <div class="kegg-picker-head">
+                <label for="pathway-filter">
+                  <span>Select KEGG Pathway</span>
+                  <input id="pathway-filter" type="search" placeholder="Search pathways, e.g. map01100 or metabolic..." autocomplete="off">
+                </label>
+                <input id="pathway-input" name="pathway" type="hidden" value="">
+              </div>
+              <div class="kegg-radio-list" id="kegg-pathway-list">
+                <div class="kegg-list-empty">Loading KEGG map pathways...</div>
+              </div>
+            </section>
+
+            <div class="kegg-extra-filters">
+              <label for="ko-input">
+                <span>KO ID</span>
+                <input id="ko-input" name="ko" type="search" placeholder="e.g., K01192" autocomplete="off">
+              </label>
+              <label for="kegg-gene-input">
+                <span>Gene ID</span>
+                <input id="kegg-gene-input" name="gene_id" type="search" placeholder="e.g., FUN_000005" autocomplete="off">
+              </label>
+              <label for="kegg-description-input">
+                <span>Description</span>
+                <input id="kegg-description-input" name="description" type="search" placeholder="Preferred name or pathway description" autocomplete="off">
+              </label>
+            </div>
+
+            <div class="gene-actions">
+              <button class="ghost-button" type="button" id="clear-kegg-search">Clear Filters</button>
+              <button class="search-button" type="submit">Execute Search</button>
+            </div>
+          </form>
+
+          <div class="gene-hint" id="kegg-hint">
+            <strong>Start KEGG Data Search</strong>
+            <p>Search by pathway, KO, gene ID, protein ID, or functional description. Results are returned as a gene/protein table.</p>
+          </div>
+
+          <div class="gene-results-head" id="kegg-results-head" hidden>
+            <p><span id="kegg-result-count">0</span> matching records</p>
+            <div class="gene-pager">
+              <button type="button" id="kegg-prev">Previous</button>
+              <span id="kegg-page-status">Page 1</span>
+              <button type="button" id="kegg-next">Next</button>
+            </div>
+          </div>
+
+          <div class="gene-table-wrap">
+            <table class="gene-table">
+              <thead>
+                <tr>
+                  <th>Organism</th>
+                  <th>KEGG Map</th>
+                  <th>KEGG KO</th>
+                  <th>Gene ID</th>
+                  <th>Protein ID</th>
+                  <th>Gene Name</th>
+                  <th>Description</th>
+                  <th>Score</th>
+                </tr>
+              </thead>
+              <tbody id="kegg-table-body">
+                <tr class="gene-empty"><td colspan="8">No query submitted yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/"><span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg></span>EPFungiDB</a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/api/samples/">Batch Data</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>KEGG records are based on eggNOG-mapper annotations.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'database/js/kegg.js' %}?v=20260722e" defer></script>
+  </body>
+</html>

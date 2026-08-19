@@ -1,0 +1,561 @@
+.genome-page {
+  background: #f4f9f5;
+}
+
+.genome-navbar .nav-links a.active {
+  color: var(--primary-dark);
+  background: rgba(22, 163, 74, 0.1);
+  opacity: 1;
+}
+
+.genome-hero {
+  padding: 116px 24px 46px;
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(2, 12, 5, 0.92), rgba(13, 35, 24, 0.94)),
+    url("../img/epfungidb-hero.png") center / cover no-repeat;
+}
+
+.genome-hero-inner {
+  width: min(1280px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.86fr) minmax(520px, 1.14fr);
+  gap: 54px;
+  align-items: center;
+}
+
+.genome-kicker {
+  width: fit-content;
+  margin: 0 0 20px;
+  padding: 5px 10px;
+  border: 1px solid rgba(134, 239, 172, 0.28);
+  border-radius: 999px;
+  color: var(--accent);
+  background: rgba(22, 163, 74, 0.1);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.genome-copy h1 {
+  max-width: 560px;
+  margin: 0;
+  font-family: Outfit, sans-serif;
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 0.98;
+}
+
+.genome-copy > p:not(.genome-kicker) {
+  max-width: 530px;
+  margin: 22px 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 17px;
+}
+
+.genome-visual {
+  min-height: 390px;
+  padding: 22px;
+  border: 1px solid rgba(134, 239, 172, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(12px);
+}
+
+.chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.68);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chart-head strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+#genome-scatter {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+.chart-legend {
+  min-height: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.66);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.chart-legend i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dot);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--dot) 55%, transparent);
+}
+
+.genome-stats,
+.genome-ledger {
+  width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+.genome-stats {
+  padding: 54px 0 42px;
+}
+
+.genome-section-head {
+  margin-bottom: 26px;
+}
+
+.genome-section-head h2,
+.ledger-head h2 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-family: Outfit, sans-serif;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1.08;
+}
+
+.genome-section-head p,
+.ledger-head p {
+  max-width: 690px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.lineage-bar {
+  min-height: 86px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.lineage-stack {
+  height: 54px;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.lineage-segment {
+  min-width: 88px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 14px;
+  color: #0d2318;
+  background: var(--segment);
+  box-shadow: inset -1px 0 rgba(13, 35, 24, 0.1);
+}
+
+.lineage-segment strong {
+  overflow: hidden;
+  font-family: Outfit, sans-serif;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lineage-segment span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.lineage-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 18px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.lineage-key span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lineage-key i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--segment);
+}
+
+.genome-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.genome-metric {
+  min-height: 132px;
+  padding: 22px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.genome-metric strong {
+  display: block;
+  color: var(--primary-dark);
+  font-family: Outfit, sans-serif;
+  font-size: clamp(30px, 3vw, 42px);
+  line-height: 1;
+}
+
+.genome-metric span {
+  display: block;
+  margin-top: 10px;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.genome-metric small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.skeleton::after {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(22, 163, 74, 0.08), transparent);
+  animation: skeleton-sweep 1.2s linear infinite;
+  content: "";
+}
+
+.genome-ledger {
+  padding: 28px 0 90px;
+}
+
+.ledger-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+
+.ledger-api-link,
+.ledger-footer button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid rgba(22, 163, 74, 0.24);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.ledger-api-link:hover,
+.ledger-api-link:focus-visible,
+.ledger-footer button:hover,
+.ledger-footer button:focus-visible {
+  border-color: rgba(22, 163, 74, 0.42);
+  background: #fff;
+  outline: none;
+}
+
+.ledger-footer button:disabled {
+  color: rgba(74, 122, 90, 0.42);
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.ledger-tools {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.35fr) repeat(5, minmax(140px, 0.7fr));
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 14px;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.ledger-tools label {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.ledger-tools label span {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ledger-tools input,
+.ledger-tools select {
+  width: 100%;
+  height: 42px;
+  min-height: 0;
+  border: 1px solid rgba(22, 163, 74, 0.16);
+  border-radius: 10px;
+  color: var(--ink);
+  line-height: normal;
+  outline: none;
+}
+
+.ledger-tools input {
+  padding: 0 13px;
+  background: #f8fbf8;
+}
+
+.ledger-tools select {
+  padding: 0 36px 0 13px;
+  appearance: none;
+  background-color: #f8fbf8;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #4a7a5a 50%),
+    linear-gradient(135deg, #4a7a5a 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) 18px,
+    calc(100% - 11px) 18px;
+  background-repeat: no-repeat;
+  background-size: 6px 6px, 6px 6px;
+}
+
+.ledger-tools input::placeholder {
+  color: rgba(74, 122, 90, 0.56);
+}
+
+.ledger-tools input:focus,
+.ledger-tools select:focus {
+  border-color: rgba(22, 163, 74, 0.48);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.08);
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid rgba(22, 163, 74, 0.13);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.genome-table {
+  width: 100%;
+  min-width: 1120px;
+  border-collapse: collapse;
+}
+
+.genome-table th,
+.genome-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(22, 163, 74, 0.1);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.genome-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  color: var(--muted);
+  background: #f8fbf8;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.genome-table tbody tr:hover {
+  background: rgba(22, 163, 74, 0.035);
+}
+
+.genome-table td {
+  color: #183829;
+  font-size: 14px;
+}
+
+.species-link {
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+.species-link:hover,
+.species-link:focus-visible,
+.sample-link:hover,
+.sample-link:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.sample-link {
+  color: rgba(21, 128, 61, 0.86);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.muted-cell {
+  color: rgba(74, 122, 90, 0.72);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0 9px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(22, 163, 74, 0.09);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+}
+
+.status-pill.partial {
+  color: #557246;
+  background: rgba(134, 239, 172, 0.16);
+}
+
+.status-pill.missing {
+  color: rgba(74, 122, 90, 0.72);
+  background: rgba(74, 122, 90, 0.08);
+}
+
+.table-loading td,
+.table-empty td,
+.table-error td {
+  padding: 42px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.table-error td {
+  color: #8a3c3c;
+}
+
+.ledger-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+#page-status {
+  color: var(--muted);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+}
+
+@keyframes skeleton-sweep {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 1180px) {
+  .genome-hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .ledger-tools {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .search-field {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 860px) {
+  .genome-hero {
+    padding-top: 96px;
+  }
+
+  .genome-stats,
+  .genome-ledger {
+    width: min(100% - 32px, 1280px);
+  }
+
+  .genome-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ledger-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 620px) {
+  .genome-hero-inner {
+    gap: 28px;
+  }
+
+  .genome-copy h1 {
+    font-size: 42px;
+  }
+
+  .genome-visual {
+    min-height: 330px;
+    padding: 16px;
+  }
+
+  #genome-scatter {
+    height: 250px;
+  }
+
+  .genome-metrics,
+  .ledger-tools {
+    grid-template-columns: 1fr;
+  }
+
+  .lineage-stack {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .lineage-segment {
+    width: 100% !important;
+    min-height: 48px;
+  }
+
+  .ledger-footer {
+    justify-content: space-between;
+  }
+}

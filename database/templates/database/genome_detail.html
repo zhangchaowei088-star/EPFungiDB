@@ -1,0 +1,148 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Genome Detail | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260731a">
+    <link rel="stylesheet" href="{% static 'database/css/genome_detail.css' %}?v=20260731a">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="genome-detail-page">
+    <nav class="navbar genome-detail-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a href="/species/">Species</a>
+          <a class="active" href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main class="genome-detail-shell">
+      <a class="detail-back-link" href="/genomes/">Back to Genome Browser</a>
+
+      <section class="strain-hero" id="strain-hero">
+        <div class="strain-copy">
+          <div class="detail-breadcrumb" id="detail-breadcrumb">Loading taxonomy...</div>
+          <h1 id="strain-title">Loading genome record...</h1>
+          <p id="strain-subtitle">Fetching strain-level genome information from the local EPFungiDB API.</p>
+          <div class="hero-actions">
+            <a id="gene-search-link" href="/genes/">Search Genes</a>
+            <a id="sample-api-link" href="/api/samples/">Open API Record</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-grid two-col" id="top-cards">
+        <article class="detail-card skeleton"></article>
+        <article class="detail-card skeleton"></article>
+      </section>
+
+      <section class="quality-card" id="quality-card">
+        <div class="section-title-row">
+          <div>
+            <h2>Quality Assessment</h2>
+            <p>Genome and annotation quality summaries from imported local analysis results.</p>
+          </div>
+          <a id="quality-api-link" href="/api/samples/">API detail</a>
+        </div>
+        <div class="quality-loading skeleton"></div>
+      </section>
+
+      <section class="detail-grid two-col" id="feature-cards">
+        <article class="detail-card skeleton"></article>
+        <article class="detail-card skeleton"></article>
+      </section>
+
+      <section class="antismash-section" id="antismash-section">
+        <div class="section-title-row">
+          <div>
+            <h2>antiSMASH Regions</h2>
+            <p>Biosynthetic gene cluster regions parsed from the local antiSMASH result JSON.</p>
+          </div>
+          <a id="antismash-api-link" href="/api/samples/">antiSMASH API</a>
+        </div>
+        <div class="antismash-loading skeleton"></div>
+      </section>
+
+      <section class="file-section" id="file-section">
+        <div class="section-title-row">
+          <div>
+            <h2>Indexed Files</h2>
+            <p>Core genome and analysis result paths indexed for this strain. Direct downloads can be wired later.</p>
+          </div>
+          <a id="file-api-link" href="/api/samples/">File API</a>
+        </div>
+        <div class="file-grid">
+          <article class="file-card skeleton"></article>
+          <article class="file-card skeleton"></article>
+          <article class="file-card skeleton"></article>
+          <article class="file-card skeleton"></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg>
+            </span>
+            EPFungiDB
+          </a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/literature/">Literature Evidence</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/api/samples/">Batch Data</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>Genome records are rendered from the imported ready-for-database tables.</span>
+      </div>
+    </footer>
+
+    <script>
+      window.EPFUNGI_SAMPLE_ID = "{{ sample_id|escapejs }}";
+    </script>
+    <script src="{% static 'database/js/genome_detail.js' %}?v=20260731a" defer></script>
+  </body>
+</html>

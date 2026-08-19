@@ -1,0 +1,173 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Species | EPFungiDB</title>
+    <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'database/css/species.css' %}?v=20260818a">
+    <link rel="icon" href="{% static 'database/img/epfungidb-icon.svg' %}" type="image/svg+xml">
+  </head>
+  <body class="species-page">
+    <nav class="navbar species-navbar is-scrolled" id="navbar" aria-label="Primary navigation">
+      <div class="nav-inner">
+        <a class="logo" href="/">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/>
+              <path d="M12 14.4v5.2M8.8 18h6.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span>EPFungiDB</span>
+        </a>
+
+        <button class="menu-button" id="menu-button" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-links" id="nav-links">
+          <a class="active" href="/species/">Species</a>
+          <a href="/genomes/">Genomics</a>
+          <a href="/genes/">Genes</a>
+          <a href="/bioassays/">Bioassay</a>
+          <a href="/literature/">Literature</a>
+          <a href="/#modules">About</a>
+        </div>
+
+        <a class="nav-cta" href="/api/samples/">Explore Database</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="species-hero">
+        <div class="species-hero-inner">
+          <div>
+            <p class="species-kicker">Species Browser</p>
+            <h1>Browse entomopathogenic fungi by taxonomy and genome coverage.</h1>
+            <p>
+              EPFungiDB currently organizes species using imported taxonomy, strain-level genome metrics, and candidate pathogenicity-associated annotations.
+            </p>
+          </div>
+          <div class="species-summary" id="species-summary">
+            <div class="summary-tile skeleton"></div>
+            <div class="summary-tile skeleton"></div>
+            <div class="summary-tile skeleton"></div>
+            <div class="summary-tile skeleton"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="target-notice">
+        <div>
+          <strong>Host target data status</strong>
+          <p>
+            The current local tables do not include structured insect host, pest target, bioassay organism, or efficacy fields.
+            Species are therefore grouped by fungal taxonomy in this release.
+          </p>
+        </div>
+        <span>Ready for future host-target table</span>
+      </section>
+
+      <section class="species-browser" aria-labelledby="species-browser-title">
+        <div class="browser-head">
+          <div>
+            <h2 id="species-browser-title">Species Catalogue</h2>
+            <p><span id="species-visible-count">...</span> species shown from <span id="species-total-count">...</span> species-level records</p>
+          </div>
+          <a href="/api/samples/">Sample API</a>
+        </div>
+
+        <div class="species-tools">
+          <label class="species-search" for="species-search">
+            <span>Search</span>
+            <input id="species-search" type="search" placeholder="Species, genus, family, strain..." autocomplete="off">
+          </label>
+          <label for="species-lineage-filter">
+            <span>Lineage</span>
+            <select id="species-lineage-filter">
+              <option value="">All lineages</option>
+            </select>
+          </label>
+          <label for="species-family-filter">
+            <span>Family</span>
+            <select id="species-family-filter">
+              <option value="">All families</option>
+            </select>
+          </label>
+          <label for="species-genus-filter">
+            <span>Genus</span>
+            <select id="species-genus-filter">
+              <option value="">All genera</option>
+            </select>
+          </label>
+          <label for="species-sort">
+            <span>Sort</span>
+            <select id="species-sort">
+              <option value="species:asc">Species A-Z</option>
+              <option value="strain_count:desc">Most strains</option>
+              <option value="avg_busco:desc">BUSCO high-low</option>
+              <option value="avg_genome_size:desc">Genome size high-low</option>
+              <option value="effector_sum:desc">Effector candidates</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="taxonomy-layout">
+          <aside class="taxonomy-panel">
+            <h3>Taxonomic Groups</h3>
+            <div id="taxonomy-tree" class="taxonomy-tree">
+              <div class="tree-loading">Loading taxonomy...</div>
+            </div>
+          </aside>
+
+          <div class="species-grid" id="species-grid">
+            <article class="species-card skeleton"></article>
+            <article class="species-card skeleton"></article>
+            <article class="species-card skeleton"></article>
+            <article class="species-card skeleton"></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div>
+          <a class="footer-logo" href="/">
+            <span class="logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3c-2.8 2.1-4.2 4.5-4.2 7.2 0 2.5 1.8 4.4 4.2 4.4s4.2-1.9 4.2-4.4C16.2 7.5 14.8 5.1 12 3Z" fill="currentColor"/></svg>
+            </span>
+            EPFungiDB
+          </a>
+          <p>An open-access resource for comparative genomics and candidate pathogenicity-associated features of entomopathogenic fungi.</p>
+        </div>
+        <div>
+          <h4>Database</h4>
+          <a href="/species/">Species Browser</a>
+          <a href="/genomes/">Genome Browser</a>
+          <a href="/genes/">Gene Search</a>
+          <a href="/kegg/">KEGG Pathways</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="/literature/">Literature Evidence</a>
+          <a href="/gene-families/">Pathogenicity Annotation</a>
+          <a href="/api/samples/">Batch Data</a>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <a href="/admin/">Admin</a>
+          <a href="/api/">REST API</a>
+          <a href="/">Back to Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>2026 EPFungiDB · Local development release</span>
+        <span>Species grouping is taxonomy-based until host-target data are imported.</span>
+      </div>
+    </footer>
+
+    <script src="{% static 'database/js/species.js' %}" defer></script>
+  </body>
+</html>
