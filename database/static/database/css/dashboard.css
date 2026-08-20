@@ -81,11 +81,11 @@ select {
 }
 
 .logo-mark {
-  width: 34px;
-  height: 34px;
+  width: 50px;
+  height: 39px;
   display: grid;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 0;
   overflow: hidden;
   background: transparent;
   flex: 0 0 auto;
@@ -94,10 +94,32 @@ select {
 .logo-mark img {
   width: 100%;
   height: 100%;
-  max-width: 34px;
-  max-height: 34px;
+  max-width: 50px;
+  max-height: 40px;
   display: block;
   object-fit: contain;
+}
+
+.logo-on-light {
+  display: none;
+}
+
+.navbar.is-scrolled .logo-on-dark,
+.navbar.is-open .logo-on-dark {
+  display: none;
+}
+
+.navbar.is-scrolled .logo-on-light,
+.navbar.is-open .logo-on-light {
+  display: block;
+}
+
+.footer .logo-on-dark {
+  display: block;
+}
+
+.footer .logo-on-light {
+  display: none;
 }
 
 .nav-links {
@@ -243,8 +265,8 @@ select {
 }
 
 .hero-emblem {
-  width: 88px;
-  height: 88px;
+  width: 118px;
+  height: 92px;
   margin: 0 auto 18px;
   filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.34));
 }
@@ -252,8 +274,8 @@ select {
 .hero-emblem img {
   width: 100%;
   height: 100%;
-  max-width: 88px;
-  max-height: 88px;
+  max-width: 118px;
+  max-height: 92px;
   display: block;
   object-fit: contain;
 }
@@ -827,8 +849,8 @@ select {
   }
 
   .hero-emblem {
-    width: 94px;
-    height: 94px;
+    width: 104px;
+    height: 82px;
   }
 
   .hero h1 {
