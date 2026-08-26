@@ -181,92 +181,6 @@ function updateLineageBar(records) {
   container.innerHTML = `<div class="lineage-stack">${segments}</div><div class="lineage-key">${keys}</div>`;
 }
 
-function drawScatter(records) {
-  const canvas = document.getElementById("genome-scatter");
-  if (!(canvas instanceof HTMLCanvasElement)) return;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  const rect = canvas.getBoundingClientRect();
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width = Math.floor(rect.width * dpr);
-  canvas.height = Math.floor(rect.height * dpr);
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-  const width = rect.width;
-  const height = rect.height;
-  const pad = { left: 52, right: 20, top: 18, bottom: 38 };
-  const plotW = width - pad.left - pad.right;
-  const plotH = height - pad.top - pad.bottom;
-  const points = records
-    .map((record) => ({
-      x: Number(record.genome_size) / 1000000,
-      y: Number(record.busco_complete_pct),
-      group: record.order_group || "Unassigned",
-    }))
-    .filter((point) => Number.isFinite(point.x) && Number.isFinite(point.y));
-
-  const maxX = Math.max(40, ...points.map((point) => point.x)) * 1.05;
-  const minX = Math.max(0, Math.min(...points.map((point) => point.x), 0));
-  const minY = 0;
-  const maxY = 100;
-  const groups = groupByCount(records, "order_group");
-  const colorByGroup = new Map(groups.map((group, index) => [group.name, groupColors[index % groupColors.length]]));
-
-  ctx.clearRect(0, 0, width, height);
-  ctx.fillStyle = "rgba(255,255,255,0.02)";
-  ctx.fillRect(0, 0, width, height);
-
-  ctx.strokeStyle = "rgba(220,255,232,0.08)";
-  ctx.lineWidth = 1;
-  ctx.font = "11px JetBrains Mono, monospace";
-  ctx.fillStyle = "rgba(255,255,255,0.46)";
-
-  for (let i = 0; i <= 4; i += 1) {
-    const y = pad.top + plotH - (plotH * i) / 4;
-    ctx.beginPath();
-    ctx.moveTo(pad.left, y);
-    ctx.lineTo(width - pad.right, y);
-    ctx.stroke();
-    ctx.fillText(String(i * 25), 14, y + 4);
-  }
-
-  for (let i = 0; i <= 4; i += 1) {
-    const x = pad.left + (plotW * i) / 4;
-    ctx.beginPath();
-    ctx.moveTo(x, pad.top);
-    ctx.lineTo(x, height - pad.bottom);
-    ctx.stroke();
-    ctx.fillText(formatDecimal(minX + ((maxX - minX) * i) / 4, 0), x - 8, height - 14);
-  }
-
-  ctx.fillStyle = "rgba(255,255,255,0.42)";
-  ctx.fillText("BUSCO %", 9, 15);
-  ctx.fillText("Genome size (Mb)", width - 146, height - 14);
-
-  points.forEach((point) => {
-    const x = pad.left + ((point.x - minX) / Math.max(1, maxX - minX)) * plotW;
-    const y = pad.top + plotH - ((point.y - minY) / (maxY - minY)) * plotH;
-    const color = colorByGroup.get(point.group) || groupColors[0];
-    ctx.beginPath();
-    ctx.arc(x, y, 3.1, 0, Math.PI * 2);
-    ctx.fillStyle = color;
-    ctx.globalAlpha = 0.68;
-    ctx.fill();
-    ctx.globalAlpha = 1;
-  });
-
-  const count = document.getElementById("chart-count");
-  if (count) count.textContent = `n = ${formatNumber(points.length)}`;
-
-  const legend = document.getElementById("chart-legend");
-  if (legend) {
-    legend.innerHTML = groups.map((group, index) => `
-      <span style="--dot:${groupColors[index % groupColors.length]}"><i></i>${escapeHtml(group.name)} · ${formatNumber(group.count)}</span>
-    `).join("");
-  }
-}
-
 function getFilters() {
   return {
     search: document.getElementById("genome-search")?.value.trim().toLowerCase() || "",
@@ -399,9 +313,7 @@ async function initGenomes() {
     populateFilters(state.records);
     updateMetrics(state.records);
     updateLineageBar(state.records);
-    drawScatter(state.records);
     applyFilters(true);
-    window.addEventListener("resize", () => drawScatter(state.records), { passive: true });
   } catch (error) {
     const tbody = document.getElementById("genome-table-body");
     if (tbody) tbody.innerHTML = '<tr class="table-error"><td colspan="11">Genome data could not be loaded from the API.</td></tr>';

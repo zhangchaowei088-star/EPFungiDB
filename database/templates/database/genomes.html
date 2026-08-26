@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Genomes | EPFungiDB</title>
     <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260820a">
-    <link rel="stylesheet" href="{% static 'database/css/genomes.css' %}?v=20260818a">
+    <link rel="stylesheet" href="{% static 'database/css/genomes.css' %}?v=20260826a">
     <link rel="icon" href="{% static 'database/img/epfungidb-favicon.png' %}" type="image/png">
   </head>
   <body class="genome-page">
@@ -45,14 +45,6 @@
             </p>
           </div>
 
-          <div class="genome-visual" aria-label="Genome size and BUSCO completeness chart">
-            <div class="chart-head">
-              <span>Genome size x BUSCO completeness</span>
-              <strong id="chart-count">...</strong>
-            </div>
-            <canvas id="genome-scatter" width="760" height="330"></canvas>
-            <div class="chart-legend" id="chart-legend"></div>
-          </div>
         </div>
       </section>
 
@@ -197,6 +189,6 @@
       </div>
     </footer>
 
-    <script src="{% static 'database/js/genomes.js' %}?v=20260722a" defer></script>
+    <script src="{% static 'database/js/genomes.js' %}?v=20260826a" defer></script>
   </body>
 </html>
