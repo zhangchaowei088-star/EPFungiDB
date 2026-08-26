@@ -22,6 +22,13 @@
   display: block;
 }
 
+.genome-copy {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.05fr) minmax(320px, 0.95fr);
+  gap: 48px;
+  align-items: end;
+}
+
 .genome-kicker {
   width: fit-content;
   margin: 0 0 20px;
@@ -37,18 +44,56 @@
 }
 
 .genome-copy h1 {
-  max-width: 560px;
+  max-width: 760px;
   margin: 0;
   font-family: Outfit, sans-serif;
-  font-size: clamp(42px, 5vw, 72px);
-  line-height: 0.98;
+  font-size: clamp(44px, 5.4vw, 78px);
+  line-height: 1.02;
 }
 
-.genome-copy > p:not(.genome-kicker) {
-  max-width: 530px;
-  margin: 22px 0 0;
+.genome-kicker {
+  grid-column: 1 / -1;
+}
+
+.genome-hero-note {
+  max-width: 560px;
+  padding: 0 0 5px 28px;
+  border-left: 1px solid rgba(134, 239, 172, 0.28);
+}
+
+.genome-hero-note p {
+  margin: 0;
   color: rgba(255, 255, 255, 0.68);
   font-size: 17px;
+}
+
+.genome-hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.genome-hero-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid rgba(134, 239, 172, 0.24);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 13px;
+  font-weight: 700;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.genome-hero-links a:hover,
+.genome-hero-links a:focus-visible {
+  border-color: rgba(134, 239, 172, 0.46);
+  color: #fff;
+  background: rgba(22, 163, 74, 0.16);
+  outline: none;
 }
 
 .genome-stats,
@@ -426,8 +471,16 @@
 }
 
 @media (max-width: 1180px) {
-  .genome-hero-inner {
+  .genome-copy {
     grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .genome-hero-note {
+    max-width: 720px;
+    padding: 24px 0 0;
+    border-top: 1px solid rgba(134, 239, 172, 0.28);
+    border-left: 0;
   }
 
   .ledger-tools {
@@ -461,7 +514,16 @@
 
 @media (max-width: 620px) {
   .genome-copy h1 {
-    font-size: 42px;
+    font-size: 40px;
+  }
+
+  .genome-hero-note {
+    padding-top: 20px;
+  }
+
+  .genome-hero-links a {
+    min-height: 34px;
+    padding: 0 12px;
   }
 
   .genome-metrics,

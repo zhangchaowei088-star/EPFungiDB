@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Genomes | EPFungiDB</title>
     <link rel="stylesheet" href="{% static 'database/css/dashboard.css' %}?v=20260820a">
-    <link rel="stylesheet" href="{% static 'database/css/genomes.css' %}?v=20260826a">
+    <link rel="stylesheet" href="{% static 'database/css/genomes.css' %}?v=20260826b">
     <link rel="icon" href="{% static 'database/img/epfungidb-favicon.png' %}" type="image/png">
   </head>
   <body class="genome-page">
@@ -40,11 +40,16 @@
           <div class="genome-copy">
             <p class="genome-kicker">Genome Browser</p>
             <h1>Compare curated fungal genomes at strain level.</h1>
-            <p>
-              Browse assembly statistics, BUSCO completeness, annotation counts, and analysis readiness for every genome in the local EPFungiDB release.
-            </p>
+            <div class="genome-hero-note">
+              <p>
+                Browse assembly statistics, BUSCO completeness, annotation counts, and analysis readiness for every genome in the local EPFungiDB release.
+              </p>
+              <div class="genome-hero-links" aria-label="Genome page shortcuts">
+                <a href="#genome-stats-title">Overview</a>
+                <a href="#genome-ledger-title">Genome ledger</a>
+              </div>
+            </div>
           </div>
-
         </div>
       </section>
 
